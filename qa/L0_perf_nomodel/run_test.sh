@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright 2019-2022, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
+# Copyright 2019-2023, NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions
@@ -68,6 +68,10 @@ if [[ $BACKENDS == *"python"* ]]; then
         cp ../python_models/identity_fp32/config.pbtxt ./python_models/python_zero_1_float32/config.pbtxt
     (cd python_models/python_zero_1_float32 && \
         sed -i "s/^name:.*/name: \"python_zero_1_float32\"/" config.pbtxt)
+fi
+
+if [[ $BACKENDS == *"custom"* ]]; then
+    mkdir -p "custom_models/custom_zero_1_float32/1"
 fi
 
 PERF_CLIENT_PERCENTILE_ARGS="" &&
